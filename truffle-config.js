@@ -8,8 +8,8 @@ module.exports = {
       deploymentPollingInterval: 10,
     },
   },
-  //contracts_directory: './src/contracts/',
-  //contracts_build_directory: './src/abis/',
+  contracts_directory: './src/contracts/',
+  contracts_build_directory: './build/abis/',
   compilers: {
     solc: {
       version:"0.8.11"
