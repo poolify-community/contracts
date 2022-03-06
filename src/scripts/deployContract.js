@@ -1,10 +1,13 @@
 const { spawn } = require("child_process");
+var argv = require('minimist-lite')(process.argv.slice(2));
+
 
 const run = async () => {
-  console.log("📄 Deploying and updating contracts...");
+  console.log(`📄 Deploying and updating contracts... to ${argv.network}`);
+  const command = `truffle migrate --reset --compile-all --network ${argv.network}`; // && node scripts/migrateABI.js
   try {
     spawn(
-      "cd Truffle && truffle migrate --reset --compile-all --network develop && node scripts/migrateABI.js",
+      command,
       {
         shell: true,
         stdio: "inherit",

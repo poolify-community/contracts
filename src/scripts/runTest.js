@@ -4,7 +4,7 @@ const run = async () => {
   console.log("📄 Running Unit Tests...");
   try {
     spawn(
-      "cd Truffle && npx hardhat test ",
+      "cd src && npx hardhat test ",
       {
         shell: true,
         stdio: "inherit",

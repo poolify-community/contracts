@@ -18,7 +18,7 @@ Create a file : wallet.config.json to store your privates keys for deployment
 ```js
 {
     "bsc":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "bscTestNet":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "bscTest":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 ```
 

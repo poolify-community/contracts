@@ -1,5 +1,5 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const walletKeys = require('./wallet.config.json'); // simple mapping : {'bsc':'xxxxxxx','bscTestnet':'xxxxxx'}
+const walletKeys = require('./wallet.config.json'); // simple mapping : {'bsc':'xxxxxxx','bscTest':'xxxxxx'}
 
 
 module.exports = {
@@ -12,9 +12,9 @@ module.exports = {
       network_id: 56,
       skipDryRun: true
     },
-    bscTestnet: {
+    bscTest: {
       provider: () => new HDWalletProvider(
-        walletKeys['bscTestnet'], 
+        walletKeys['bscTest'], 
         'https://data-seed-prebsc-1-s1.binance.org:8545'
       ),
       network_id: 97,
@@ -29,6 +29,7 @@ module.exports = {
     },
   },
   contracts_directory: './src/contracts/',
+  migrations_directory:'./src/migrations/',
   contracts_build_directory: './build/abis/',
   compilers: {
     solc: {
