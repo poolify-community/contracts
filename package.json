@@ -6,7 +6,9 @@
   "dependencies": {
     "@openzeppelin/test-helpers":"0.5.15",
     "@openzeppelin/contracts": "^4.4.2",
-    "@openzeppelin/contracts-upgradeable": "^4.4.2"
+    "@openzeppelin/contracts-upgradeable": "^4.4.2",
+    "chai-as-promised": "7.1.1",
+    "chai-bignumber": "3.0.0"
   },
   "scripts": {
     "deploy": "node Truffle/scripts/deployContract.js",

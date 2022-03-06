@@ -8,8 +8,10 @@
 # testing
 /coverage
 
-# production
-/Truffle/build/contracts/*.json
+# Exclude contracts
+/build/contracts/*.json
+/artifacts/*/
+/cache/*.json
 
 
 # misc
