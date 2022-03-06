@@ -1,7 +1,7 @@
 
 
 const explorers = {
-    'local':'',
+    'develop':'http://localhost/address',
     'bsc':'https://testnet.bscscan.com/address',
     'bscTestNet':'https://testnet.bscscan.com/address'
 }
