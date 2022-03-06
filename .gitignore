@@ -13,6 +13,9 @@
 /artifacts/*/
 /cache/*.json
 
+# wallet config
+wallet.config.json
+
 
 # misc
 .DS_Store

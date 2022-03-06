@@ -15,6 +15,7 @@
     "test": "node Truffle/scripts/runTest.js"
   },
   "devDependencies": {
+    "@truffle/hdwallet-provider":"2.0.3",
     "@openzeppelin/test-helpers":"0.5.15",
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-truffle5": "^2.0.3",
