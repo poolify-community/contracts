@@ -50,5 +50,5 @@ npm run local_deploy
 ```
 
 This will create new files in the build folder:
-1. build/abis will contain the abis files
-2. build/config is containing the JSON config file for the frontend app !
+1. `build/abis` will contain the abis files
+2. `build/config` is containing the JSON config file for the frontend app !
