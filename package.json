@@ -12,6 +12,7 @@
     "minimist-lite":"2.2.0"
   },
   "scripts": {
+    "init_wallet":"node src/scripts/initialSetup.js",
     "local_deploy": "node src/scripts/deployContract.js --network=develop",
     "bsc_deploy": "node src/scripts/deployContract.js --network=bsc",
     "bscTest_deploy": "node src/scripts/deployContract.js --network=bscTest",

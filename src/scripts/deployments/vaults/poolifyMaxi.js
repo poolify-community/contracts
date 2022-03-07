@@ -1,4 +1,4 @@
-const explorer        = require('../../utils/explorer');
+const networks        = require('../../utils/networks');
 
 
 module.exports = function getConfiguration(props){
@@ -12,7 +12,7 @@ module.exports = function getConfiguration(props){
         token: 'POOLIFY',
         tokenDescription: 'Poolify.Finance',
         tokenAddress: tokenAddress,
-        tokenExplorer:explorer.getExplorerUrl(network,tokenAddress),
+        tokenExplorer:networks.getExplorerUrl(network,tokenAddress),
         tokenDecimals: 18,
         //earnedToken: null,
         //earnedTokenAddress: null,
@@ -38,6 +38,6 @@ module.exports = function getConfiguration(props){
         //tokenVault:'POOLIFY',
         vaultTokenAddress:null, // It's staking, there is no token
         vaultContractAddress:vaultContractAddress,
-        vaultExplorer:explorer.getExplorerUrl(network,vaultContractAddress)
+        vaultExplorer:networks.getExplorerUrl(network,vaultContractAddress)
       }
 }

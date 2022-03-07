@@ -7,13 +7,17 @@ There is no documentation yet, this will be provided later.
 
 ## How to use it :
 
+#### Installation:
 First install all the dependencies
 
 ```sh
-npm install
+npm install 
 ```
 
-Create a file : wallet.config.json to store your privates keys for deployment
+Then run this command to automatically create the wall.config.json file for the different environments.
+```sh
+npm run init_wallet
+```
 
 ```js
 {
@@ -22,9 +26,29 @@ Create a file : wallet.config.json to store your privates keys for deployment
 }
 ```
 
+#### Test:
 Run the tests:
 
 ```sh
 npm run test
 ```
 
+
+#### Deployment:
+
+The script used depend of the network target:
+
+| Network       | Script        |
+| ------------- | ------------- |
+| develop       | local_deploy  |
+| bscTest       | bscTest_deploy|
+| bsc           | bsc_deploy    |
+
+Example for the development network:
+```sh
+npm run local_deploy
+```
+
+This will create new files in the build folder:
+1. build/abis will contain the abis files
+2. build/config is containing the JSON config file for the frontend app !
