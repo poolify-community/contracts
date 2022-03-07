@@ -6,13 +6,19 @@
   "dependencies": {
     "@openzeppelin/test-helpers":"0.5.15",
     "@openzeppelin/contracts": "^4.4.2",
-    "@openzeppelin/contracts-upgradeable": "^4.4.2"
+    "@openzeppelin/contracts-upgradeable": "^4.4.2",
+    "chai-as-promised": "7.1.1",
+    "chai-bignumber": "3.0.0",
+    "minimist-lite":"2.2.0"
   },
   "scripts": {
-    "deploy": "node Truffle/scripts/deployContract.js",
-    "test": "node Truffle/scripts/runTest.js"
+    "local_deploy": "node src/scripts/deployContract.js --network=develop",
+    "bsc_deploy": "node src/scripts/deployContract.js --network=bsc",
+    "bscTest_deploy": "node src/scripts/deployContract.js --network=bscTest",
+    "test": "node src/scripts/runTest.js"
   },
   "devDependencies": {
+    "@truffle/hdwallet-provider":"2.0.3",
     "@openzeppelin/test-helpers":"0.5.15",
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-truffle5": "^2.0.3",

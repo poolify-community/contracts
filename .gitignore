@@ -8,8 +8,13 @@
 # testing
 /coverage
 
-# production
-/Truffle/build/contracts/*.json
+# Exclude contracts
+/build/
+/artifacts/*/
+/cache/*.json
+
+# wallet config
+wallet.config.json
 
 
 # misc
