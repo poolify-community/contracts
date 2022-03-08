@@ -14,7 +14,7 @@ const run = async () => {
       walletConfig[item] = null;
     });
 
-    let filePath = 'wallet.config2.json';
+    let filePath = 'wallet.config.json';
 
     if(fs.existsSync(filePath)){
       customConsole.error('wallet.config.json already exist !'); 
