@@ -31912,6 +31912,12 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {
+    "97": {
+      "events": {},
+      "links": {},
+      "address": "0x95EAF0156C05df0fE83859e466ea8877090ac898",
+      "transactionHash": "0x9faf6a97045ef52f0c8b917d28d168b789a3a5d0128e6da4db63b4e683a140e3"
+    },
     "5777": {
       "events": {},
       "links": {},
@@ -31920,7 +31926,7 @@
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-03-08T21:40:19.806Z",
+  "updatedAt": "2022-03-08T21:47:43.508Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Implementation of a vault to deposit funds for yield optimizing. This is the contract that receives funds and that users interface with. The yield optimizing strategy itself is implemented in a separate 'Strategy.sol' contract.",
