@@ -31,8 +31,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -56,8 +55,7 @@
     },
     {
       "stateMutability": "payable",
-      "type": "receive",
-      "payable": true
+      "type": "receive"
     },
     {
       "inputs": [
@@ -6772,8 +6770,7 @@
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-03-08T21:47:43.539Z",
-  "networkType": "ethereum",
+  "updatedAt": "2022-03-09T22:41:29.280Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

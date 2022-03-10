@@ -3118,15 +3118,15 @@
         656
       ],
       "StratManagerPLFY": [
-        14438
+        14453
       ]
     },
-    "id": 14439,
+    "id": 14454,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 14339,
+        "id": 14354,
         "literals": [
           "solidity",
           "0.8",
@@ -3138,10 +3138,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
         "file": "@openzeppelin/contracts/access/Ownable.sol",
-        "id": 14340,
+        "id": 14355,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 14439,
+        "scope": 14454,
         "sourceUnit": 487,
         "src": "57:52:37",
         "symbolAliases": [],
@@ -3150,10 +3150,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/security/Pausable.sol",
         "file": "@openzeppelin/contracts/security/Pausable.sol",
-        "id": 14341,
+        "id": 14356,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 14439,
+        "scope": 14454,
         "sourceUnit": 657,
         "src": "110:55:37",
         "symbolAliases": [],
@@ -3164,25 +3164,25 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 14342,
+              "id": 14357,
               "name": "Ownable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 486,
               "src": "196:7:37"
             },
-            "id": 14343,
+            "id": 14358,
             "nodeType": "InheritanceSpecifier",
             "src": "196:7:37"
           },
           {
             "baseName": {
-              "id": 14344,
+              "id": 14359,
               "name": "Pausable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 656,
               "src": "205:8:37"
             },
-            "id": 14345,
+            "id": 14360,
             "nodeType": "InheritanceSpecifier",
             "src": "205:8:37"
           }
@@ -3191,9 +3191,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 14438,
+        "id": 14453,
         "linearizedBaseContracts": [
-          14438,
+          14453,
           656,
           486,
           2814
@@ -3205,18 +3205,18 @@
           {
             "constant": false,
             "documentation": {
-              "id": 14346,
+              "id": 14361,
               "nodeType": "StructuredDocumentation",
               "src": "220:191:37",
               "text": " @dev Poolify Contracts:\n {keeper} - Address to manage a few lower risk features of the strat\n {vault} - Address of the vault that controls the strategy's funds."
             },
             "functionSelector": "aced1661",
-            "id": 14348,
+            "id": 14363,
             "mutability": "mutable",
             "name": "keeper",
             "nameLocation": "431:6:37",
             "nodeType": "VariableDeclaration",
-            "scope": 14438,
+            "scope": 14453,
             "src": "416:21:37",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3225,7 +3225,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 14347,
+              "id": 14362,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "416:7:37",
@@ -3240,12 +3240,12 @@
           {
             "constant": false,
             "functionSelector": "fbfa77cf",
-            "id": 14350,
+            "id": 14365,
             "mutability": "mutable",
             "name": "vault",
             "nameLocation": "458:5:37",
             "nodeType": "VariableDeclaration",
-            "scope": 14438,
+            "scope": 14453,
             "src": "443:20:37",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3254,7 +3254,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 14349,
+              "id": 14364,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "443:7:37",
@@ -3269,12 +3269,12 @@
           {
             "constant": false,
             "functionSelector": "c4dc6ffa",
-            "id": 14352,
+            "id": 14367,
             "mutability": "mutable",
             "name": "poolifyFeeRecipient",
             "nameLocation": "484:19:37",
             "nodeType": "VariableDeclaration",
-            "scope": 14438,
+            "scope": 14453,
             "src": "469:34:37",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3283,7 +3283,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 14351,
+              "id": 14366,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "469:7:37",
@@ -3297,23 +3297,23 @@
           },
           {
             "body": {
-              "id": 14374,
+              "id": 14389,
               "nodeType": "Block",
               "src": "851:109:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14364,
+                    "id": 14379,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14362,
+                      "id": 14377,
                       "name": "keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14348,
+                      "referencedDeclaration": 14363,
                       "src": "861:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3323,11 +3323,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14363,
+                      "id": 14378,
                       "name": "_keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14355,
+                      "referencedDeclaration": 14370,
                       "src": "870:7:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3340,23 +3340,23 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14365,
+                  "id": 14380,
                   "nodeType": "ExpressionStatement",
                   "src": "861:16:37"
                 },
                 {
                   "expression": {
-                    "id": 14368,
+                    "id": 14383,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14366,
+                      "id": 14381,
                       "name": "vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14350,
+                      "referencedDeclaration": 14365,
                       "src": "887:5:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3366,11 +3366,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14367,
+                      "id": 14382,
                       "name": "_vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14357,
+                      "referencedDeclaration": 14372,
                       "src": "895:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3383,23 +3383,23 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14369,
+                  "id": 14384,
                   "nodeType": "ExpressionStatement",
                   "src": "887:14:37"
                 },
                 {
                   "expression": {
-                    "id": 14372,
+                    "id": 14387,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14370,
+                      "id": 14385,
                       "name": "poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14352,
+                      "referencedDeclaration": 14367,
                       "src": "911:19:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3409,11 +3409,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14371,
+                      "id": 14386,
                       "name": "_poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14359,
+                      "referencedDeclaration": 14374,
                       "src": "933:20:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3426,19 +3426,19 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14373,
+                  "id": 14388,
                   "nodeType": "ExpressionStatement",
                   "src": "911:42:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14353,
+              "id": 14368,
               "nodeType": "StructuredDocumentation",
               "src": "510:232:37",
               "text": " @dev Initializes the base strategy.\n @param _keeper address to use as alternative owner.\n @param _vault address of parent vault.\n @param _poolifyFeeRecipient address where to send Poolify's fees."
             },
-            "id": 14375,
+            "id": 14390,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -3446,17 +3446,17 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14360,
+              "id": 14375,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14355,
+                  "id": 14370,
                   "mutability": "mutable",
                   "name": "_keeper",
                   "nameLocation": "776:7:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14375,
+                  "scope": 14390,
                   "src": "768:15:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3465,7 +3465,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14354,
+                    "id": 14369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "768:7:37",
@@ -3479,12 +3479,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14357,
+                  "id": 14372,
                   "mutability": "mutable",
                   "name": "_vault",
                   "nameLocation": "801:6:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14375,
+                  "scope": 14390,
                   "src": "793:14:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3493,7 +3493,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14356,
+                    "id": 14371,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "793:7:37",
@@ -3507,12 +3507,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14359,
+                  "id": 14374,
                   "mutability": "mutable",
                   "name": "_poolifyFeeRecipient",
                   "nameLocation": "825:20:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14375,
+                  "scope": 14390,
                   "src": "817:28:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3521,7 +3521,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14358,
+                    "id": 14373,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "817:7:37",
@@ -3537,12 +3537,12 @@
               "src": "758:93:37"
             },
             "returnParameters": {
-              "id": 14361,
+              "id": 14376,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "851:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "747:213:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -3550,7 +3550,7 @@
           },
           {
             "body": {
-              "id": 14392,
+              "id": 14407,
               "nodeType": "Block",
               "src": "1042:94:37",
               "statements": [
@@ -3562,7 +3562,7 @@
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
                         },
-                        "id": 14387,
+                        "id": 14402,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3572,14 +3572,14 @@
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           },
-                          "id": 14382,
+                          "id": 14397,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 14378,
+                              "id": 14393,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -3590,7 +3590,7 @@
                                 "typeString": "msg"
                               }
                             },
-                            "id": 14379,
+                            "id": 14394,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3609,7 +3609,7 @@
                             "arguments": [],
                             "expression": {
                               "argumentTypes": [],
-                              "id": 14380,
+                              "id": 14395,
                               "name": "owner",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -3620,7 +3620,7 @@
                                 "typeString": "function () view returns (address)"
                               }
                             },
-                            "id": 14381,
+                            "id": 14396,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3648,14 +3648,14 @@
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           },
-                          "id": 14386,
+                          "id": 14401,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 14383,
+                              "id": 14398,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -3666,7 +3666,7 @@
                                 "typeString": "msg"
                               }
                             },
-                            "id": 14384,
+                            "id": 14399,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3682,11 +3682,11 @@
                           "nodeType": "BinaryOperation",
                           "operator": "==",
                           "rightExpression": {
-                            "id": 14385,
+                            "id": 14400,
                             "name": "keeper",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 14348,
+                            "referencedDeclaration": 14363,
                             "src": "1099:6:37",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -3707,7 +3707,7 @@
                       },
                       {
                         "hexValue": "216d616e61676572",
-                        "id": 14388,
+                        "id": 14403,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3733,7 +3733,7 @@
                           "typeString": "literal_string \"!manager\""
                         }
                       ],
-                      "id": 14377,
+                      "id": 14392,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -3747,7 +3747,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 14389,
+                    "id": 14404,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3762,23 +3762,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 14390,
+                  "id": 14405,
                   "nodeType": "ExpressionStatement",
                   "src": "1052:66:37"
                 },
                 {
-                  "id": 14391,
+                  "id": 14406,
                   "nodeType": "PlaceholderStatement",
                   "src": "1128:1:37"
                 }
               ]
             },
-            "id": 14393,
+            "id": 14408,
             "name": "onlyManager",
             "nameLocation": "1028:11:37",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 14376,
+              "id": 14391,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1039:2:37"
@@ -3789,23 +3789,23 @@
           },
           {
             "body": {
-              "id": 14405,
+              "id": 14420,
               "nodeType": "Block",
               "src": "1306:33:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14403,
+                    "id": 14418,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14401,
+                      "id": 14416,
                       "name": "keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14348,
+                      "referencedDeclaration": 14363,
                       "src": "1316:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3815,11 +3815,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14402,
+                      "id": 14417,
                       "name": "_keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14396,
+                      "referencedDeclaration": 14411,
                       "src": "1325:7:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3832,31 +3832,31 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14404,
+                  "id": 14419,
                   "nodeType": "ExpressionStatement",
                   "src": "1316:16:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14394,
+              "id": 14409,
               "nodeType": "StructuredDocumentation",
               "src": "1142:102:37",
               "text": " @dev Updates address of the strat keeper.\n @param _keeper new keeper address."
             },
             "functionSelector": "748747e6",
-            "id": 14406,
+            "id": 14421,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 14399,
+                "id": 14414,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 14398,
+                  "id": 14413,
                   "name": "onlyManager",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 14393,
+                  "referencedDeclaration": 14408,
                   "src": "1294:11:37"
                 },
                 "nodeType": "ModifierInvocation",
@@ -3867,17 +3867,17 @@
             "nameLocation": "1258:9:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14397,
+              "id": 14412,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14396,
+                  "id": 14411,
                   "mutability": "mutable",
                   "name": "_keeper",
                   "nameLocation": "1276:7:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14406,
+                  "scope": 14421,
                   "src": "1268:15:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3886,7 +3886,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14395,
+                    "id": 14410,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1268:7:37",
@@ -3902,12 +3902,12 @@
               "src": "1267:17:37"
             },
             "returnParameters": {
-              "id": 14400,
+              "id": 14415,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1306:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1249:90:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -3915,23 +3915,23 @@
           },
           {
             "body": {
-              "id": 14418,
+              "id": 14433,
               "nodeType": "Block",
               "src": "1488:31:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14416,
+                    "id": 14431,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14414,
+                      "id": 14429,
                       "name": "vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14350,
+                      "referencedDeclaration": 14365,
                       "src": "1498:5:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3941,11 +3941,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14415,
+                      "id": 14430,
                       "name": "_vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14409,
+                      "referencedDeclaration": 14424,
                       "src": "1506:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3958,28 +3958,28 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14417,
+                  "id": 14432,
                   "nodeType": "ExpressionStatement",
                   "src": "1498:14:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14407,
+              "id": 14422,
               "nodeType": "StructuredDocumentation",
               "src": "1345:85:37",
               "text": " @dev Updates parent vault.\n @param _vault new vault address."
             },
             "functionSelector": "6817031b",
-            "id": 14419,
+            "id": 14434,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 14412,
+                "id": 14427,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 14411,
+                  "id": 14426,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 428,
@@ -3993,17 +3993,17 @@
             "nameLocation": "1444:8:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14410,
+              "id": 14425,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14409,
+                  "id": 14424,
                   "mutability": "mutable",
                   "name": "_vault",
                   "nameLocation": "1461:6:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14419,
+                  "scope": 14434,
                   "src": "1453:14:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4012,7 +4012,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14408,
+                    "id": 14423,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1453:7:37",
@@ -4028,12 +4028,12 @@
               "src": "1452:16:37"
             },
             "returnParameters": {
-              "id": 14413,
+              "id": 14428,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1488:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1435:84:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4041,23 +4041,23 @@
           },
           {
             "body": {
-              "id": 14431,
+              "id": 14446,
               "nodeType": "Block",
               "src": "1735:59:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14429,
+                    "id": 14444,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14427,
+                      "id": 14442,
                       "name": "poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14352,
+                      "referencedDeclaration": 14367,
                       "src": "1745:19:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4067,11 +4067,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14428,
+                      "id": 14443,
                       "name": "_poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14422,
+                      "referencedDeclaration": 14437,
                       "src": "1767:20:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4084,28 +4084,28 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14430,
+                  "id": 14445,
                   "nodeType": "ExpressionStatement",
                   "src": "1745:42:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14420,
+              "id": 14435,
               "nodeType": "StructuredDocumentation",
               "src": "1525:124:37",
               "text": " @dev Updates Poolify fee recipient.\n @param _poolifyFeeRecipient new Poolify fee recipient address."
             },
             "functionSelector": "86726a64",
-            "id": 14432,
+            "id": 14447,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 14425,
+                "id": 14440,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 14424,
+                  "id": 14439,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 428,
@@ -4119,17 +4119,17 @@
             "nameLocation": "1663:22:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14423,
+              "id": 14438,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14422,
+                  "id": 14437,
                   "mutability": "mutable",
                   "name": "_poolifyFeeRecipient",
                   "nameLocation": "1694:20:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14432,
+                  "scope": 14447,
                   "src": "1686:28:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4138,7 +4138,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14421,
+                    "id": 14436,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1686:7:37",
@@ -4154,12 +4154,12 @@
               "src": "1685:30:37"
             },
             "returnParameters": {
-              "id": 14426,
+              "id": 14441,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1735:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1654:140:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4167,19 +4167,19 @@
           },
           {
             "body": {
-              "id": 14436,
+              "id": 14451,
               "nodeType": "Block",
               "src": "1970:2:37",
               "statements": []
             },
             "documentation": {
-              "id": 14433,
+              "id": 14448,
               "nodeType": "StructuredDocumentation",
               "src": "1800:123:37",
               "text": " @dev Function to synchronize balances before new user deposit.\n Can be overridden in the strategy."
             },
             "functionSelector": "573fef0a",
-            "id": 14437,
+            "id": 14452,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4187,25 +4187,25 @@
             "nameLocation": "1937:13:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14434,
+              "id": 14449,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1950:2:37"
             },
             "returnParameters": {
-              "id": 14435,
+              "id": 14450,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1970:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1928:44:37",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "external"
           }
         ],
-        "scope": 14439,
+        "scope": 14454,
         "src": "167:1807:37",
         "usedErrors": []
       }
@@ -4225,15 +4225,15 @@
         656
       ],
       "StratManagerPLFY": [
-        14438
+        14453
       ]
     },
-    "id": 14439,
+    "id": 14454,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 14339,
+        "id": 14354,
         "literals": [
           "solidity",
           "0.8",
@@ -4245,10 +4245,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
         "file": "@openzeppelin/contracts/access/Ownable.sol",
-        "id": 14340,
+        "id": 14355,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 14439,
+        "scope": 14454,
         "sourceUnit": 487,
         "src": "57:52:37",
         "symbolAliases": [],
@@ -4257,10 +4257,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/security/Pausable.sol",
         "file": "@openzeppelin/contracts/security/Pausable.sol",
-        "id": 14341,
+        "id": 14356,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 14439,
+        "scope": 14454,
         "sourceUnit": 657,
         "src": "110:55:37",
         "symbolAliases": [],
@@ -4271,25 +4271,25 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 14342,
+              "id": 14357,
               "name": "Ownable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 486,
               "src": "196:7:37"
             },
-            "id": 14343,
+            "id": 14358,
             "nodeType": "InheritanceSpecifier",
             "src": "196:7:37"
           },
           {
             "baseName": {
-              "id": 14344,
+              "id": 14359,
               "name": "Pausable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 656,
               "src": "205:8:37"
             },
-            "id": 14345,
+            "id": 14360,
             "nodeType": "InheritanceSpecifier",
             "src": "205:8:37"
           }
@@ -4298,9 +4298,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 14438,
+        "id": 14453,
         "linearizedBaseContracts": [
-          14438,
+          14453,
           656,
           486,
           2814
@@ -4312,18 +4312,18 @@
           {
             "constant": false,
             "documentation": {
-              "id": 14346,
+              "id": 14361,
               "nodeType": "StructuredDocumentation",
               "src": "220:191:37",
               "text": " @dev Poolify Contracts:\n {keeper} - Address to manage a few lower risk features of the strat\n {vault} - Address of the vault that controls the strategy's funds."
             },
             "functionSelector": "aced1661",
-            "id": 14348,
+            "id": 14363,
             "mutability": "mutable",
             "name": "keeper",
             "nameLocation": "431:6:37",
             "nodeType": "VariableDeclaration",
-            "scope": 14438,
+            "scope": 14453,
             "src": "416:21:37",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4332,7 +4332,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 14347,
+              "id": 14362,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "416:7:37",
@@ -4347,12 +4347,12 @@
           {
             "constant": false,
             "functionSelector": "fbfa77cf",
-            "id": 14350,
+            "id": 14365,
             "mutability": "mutable",
             "name": "vault",
             "nameLocation": "458:5:37",
             "nodeType": "VariableDeclaration",
-            "scope": 14438,
+            "scope": 14453,
             "src": "443:20:37",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4361,7 +4361,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 14349,
+              "id": 14364,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "443:7:37",
@@ -4376,12 +4376,12 @@
           {
             "constant": false,
             "functionSelector": "c4dc6ffa",
-            "id": 14352,
+            "id": 14367,
             "mutability": "mutable",
             "name": "poolifyFeeRecipient",
             "nameLocation": "484:19:37",
             "nodeType": "VariableDeclaration",
-            "scope": 14438,
+            "scope": 14453,
             "src": "469:34:37",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4390,7 +4390,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 14351,
+              "id": 14366,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "469:7:37",
@@ -4404,23 +4404,23 @@
           },
           {
             "body": {
-              "id": 14374,
+              "id": 14389,
               "nodeType": "Block",
               "src": "851:109:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14364,
+                    "id": 14379,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14362,
+                      "id": 14377,
                       "name": "keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14348,
+                      "referencedDeclaration": 14363,
                       "src": "861:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4430,11 +4430,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14363,
+                      "id": 14378,
                       "name": "_keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14355,
+                      "referencedDeclaration": 14370,
                       "src": "870:7:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4447,23 +4447,23 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14365,
+                  "id": 14380,
                   "nodeType": "ExpressionStatement",
                   "src": "861:16:37"
                 },
                 {
                   "expression": {
-                    "id": 14368,
+                    "id": 14383,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14366,
+                      "id": 14381,
                       "name": "vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14350,
+                      "referencedDeclaration": 14365,
                       "src": "887:5:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4473,11 +4473,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14367,
+                      "id": 14382,
                       "name": "_vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14357,
+                      "referencedDeclaration": 14372,
                       "src": "895:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4490,23 +4490,23 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14369,
+                  "id": 14384,
                   "nodeType": "ExpressionStatement",
                   "src": "887:14:37"
                 },
                 {
                   "expression": {
-                    "id": 14372,
+                    "id": 14387,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14370,
+                      "id": 14385,
                       "name": "poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14352,
+                      "referencedDeclaration": 14367,
                       "src": "911:19:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4516,11 +4516,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14371,
+                      "id": 14386,
                       "name": "_poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14359,
+                      "referencedDeclaration": 14374,
                       "src": "933:20:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4533,19 +4533,19 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14373,
+                  "id": 14388,
                   "nodeType": "ExpressionStatement",
                   "src": "911:42:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14353,
+              "id": 14368,
               "nodeType": "StructuredDocumentation",
               "src": "510:232:37",
               "text": " @dev Initializes the base strategy.\n @param _keeper address to use as alternative owner.\n @param _vault address of parent vault.\n @param _poolifyFeeRecipient address where to send Poolify's fees."
             },
-            "id": 14375,
+            "id": 14390,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -4553,17 +4553,17 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14360,
+              "id": 14375,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14355,
+                  "id": 14370,
                   "mutability": "mutable",
                   "name": "_keeper",
                   "nameLocation": "776:7:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14375,
+                  "scope": 14390,
                   "src": "768:15:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4572,7 +4572,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14354,
+                    "id": 14369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "768:7:37",
@@ -4586,12 +4586,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14357,
+                  "id": 14372,
                   "mutability": "mutable",
                   "name": "_vault",
                   "nameLocation": "801:6:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14375,
+                  "scope": 14390,
                   "src": "793:14:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4600,7 +4600,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14356,
+                    "id": 14371,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "793:7:37",
@@ -4614,12 +4614,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14359,
+                  "id": 14374,
                   "mutability": "mutable",
                   "name": "_poolifyFeeRecipient",
                   "nameLocation": "825:20:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14375,
+                  "scope": 14390,
                   "src": "817:28:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4628,7 +4628,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14358,
+                    "id": 14373,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "817:7:37",
@@ -4644,12 +4644,12 @@
               "src": "758:93:37"
             },
             "returnParameters": {
-              "id": 14361,
+              "id": 14376,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "851:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "747:213:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4657,7 +4657,7 @@
           },
           {
             "body": {
-              "id": 14392,
+              "id": 14407,
               "nodeType": "Block",
               "src": "1042:94:37",
               "statements": [
@@ -4669,7 +4669,7 @@
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
                         },
-                        "id": 14387,
+                        "id": 14402,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4679,14 +4679,14 @@
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           },
-                          "id": 14382,
+                          "id": 14397,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 14378,
+                              "id": 14393,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -4697,7 +4697,7 @@
                                 "typeString": "msg"
                               }
                             },
-                            "id": 14379,
+                            "id": 14394,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -4716,7 +4716,7 @@
                             "arguments": [],
                             "expression": {
                               "argumentTypes": [],
-                              "id": 14380,
+                              "id": 14395,
                               "name": "owner",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -4727,7 +4727,7 @@
                                 "typeString": "function () view returns (address)"
                               }
                             },
-                            "id": 14381,
+                            "id": 14396,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -4755,14 +4755,14 @@
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           },
-                          "id": 14386,
+                          "id": 14401,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 14383,
+                              "id": 14398,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -4773,7 +4773,7 @@
                                 "typeString": "msg"
                               }
                             },
-                            "id": 14384,
+                            "id": 14399,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -4789,11 +4789,11 @@
                           "nodeType": "BinaryOperation",
                           "operator": "==",
                           "rightExpression": {
-                            "id": 14385,
+                            "id": 14400,
                             "name": "keeper",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 14348,
+                            "referencedDeclaration": 14363,
                             "src": "1099:6:37",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -4814,7 +4814,7 @@
                       },
                       {
                         "hexValue": "216d616e61676572",
-                        "id": 14388,
+                        "id": 14403,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -4840,7 +4840,7 @@
                           "typeString": "literal_string \"!manager\""
                         }
                       ],
-                      "id": 14377,
+                      "id": 14392,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -4854,7 +4854,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 14389,
+                    "id": 14404,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4869,23 +4869,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 14390,
+                  "id": 14405,
                   "nodeType": "ExpressionStatement",
                   "src": "1052:66:37"
                 },
                 {
-                  "id": 14391,
+                  "id": 14406,
                   "nodeType": "PlaceholderStatement",
                   "src": "1128:1:37"
                 }
               ]
             },
-            "id": 14393,
+            "id": 14408,
             "name": "onlyManager",
             "nameLocation": "1028:11:37",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 14376,
+              "id": 14391,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1039:2:37"
@@ -4896,23 +4896,23 @@
           },
           {
             "body": {
-              "id": 14405,
+              "id": 14420,
               "nodeType": "Block",
               "src": "1306:33:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14403,
+                    "id": 14418,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14401,
+                      "id": 14416,
                       "name": "keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14348,
+                      "referencedDeclaration": 14363,
                       "src": "1316:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4922,11 +4922,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14402,
+                      "id": 14417,
                       "name": "_keeper",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14396,
+                      "referencedDeclaration": 14411,
                       "src": "1325:7:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4939,31 +4939,31 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14404,
+                  "id": 14419,
                   "nodeType": "ExpressionStatement",
                   "src": "1316:16:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14394,
+              "id": 14409,
               "nodeType": "StructuredDocumentation",
               "src": "1142:102:37",
               "text": " @dev Updates address of the strat keeper.\n @param _keeper new keeper address."
             },
             "functionSelector": "748747e6",
-            "id": 14406,
+            "id": 14421,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 14399,
+                "id": 14414,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 14398,
+                  "id": 14413,
                   "name": "onlyManager",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 14393,
+                  "referencedDeclaration": 14408,
                   "src": "1294:11:37"
                 },
                 "nodeType": "ModifierInvocation",
@@ -4974,17 +4974,17 @@
             "nameLocation": "1258:9:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14397,
+              "id": 14412,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14396,
+                  "id": 14411,
                   "mutability": "mutable",
                   "name": "_keeper",
                   "nameLocation": "1276:7:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14406,
+                  "scope": 14421,
                   "src": "1268:15:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4993,7 +4993,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14395,
+                    "id": 14410,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1268:7:37",
@@ -5009,12 +5009,12 @@
               "src": "1267:17:37"
             },
             "returnParameters": {
-              "id": 14400,
+              "id": 14415,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1306:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1249:90:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -5022,23 +5022,23 @@
           },
           {
             "body": {
-              "id": 14418,
+              "id": 14433,
               "nodeType": "Block",
               "src": "1488:31:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14416,
+                    "id": 14431,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14414,
+                      "id": 14429,
                       "name": "vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14350,
+                      "referencedDeclaration": 14365,
                       "src": "1498:5:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -5048,11 +5048,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14415,
+                      "id": 14430,
                       "name": "_vault",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14409,
+                      "referencedDeclaration": 14424,
                       "src": "1506:6:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -5065,28 +5065,28 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14417,
+                  "id": 14432,
                   "nodeType": "ExpressionStatement",
                   "src": "1498:14:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14407,
+              "id": 14422,
               "nodeType": "StructuredDocumentation",
               "src": "1345:85:37",
               "text": " @dev Updates parent vault.\n @param _vault new vault address."
             },
             "functionSelector": "6817031b",
-            "id": 14419,
+            "id": 14434,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 14412,
+                "id": 14427,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 14411,
+                  "id": 14426,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 428,
@@ -5100,17 +5100,17 @@
             "nameLocation": "1444:8:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14410,
+              "id": 14425,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14409,
+                  "id": 14424,
                   "mutability": "mutable",
                   "name": "_vault",
                   "nameLocation": "1461:6:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14419,
+                  "scope": 14434,
                   "src": "1453:14:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5119,7 +5119,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14408,
+                    "id": 14423,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1453:7:37",
@@ -5135,12 +5135,12 @@
               "src": "1452:16:37"
             },
             "returnParameters": {
-              "id": 14413,
+              "id": 14428,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1488:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1435:84:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -5148,23 +5148,23 @@
           },
           {
             "body": {
-              "id": 14431,
+              "id": 14446,
               "nodeType": "Block",
               "src": "1735:59:37",
               "statements": [
                 {
                   "expression": {
-                    "id": 14429,
+                    "id": 14444,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 14427,
+                      "id": 14442,
                       "name": "poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14352,
+                      "referencedDeclaration": 14367,
                       "src": "1745:19:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -5174,11 +5174,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 14428,
+                      "id": 14443,
                       "name": "_poolifyFeeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14422,
+                      "referencedDeclaration": 14437,
                       "src": "1767:20:37",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -5191,28 +5191,28 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 14430,
+                  "id": 14445,
                   "nodeType": "ExpressionStatement",
                   "src": "1745:42:37"
                 }
               ]
             },
             "documentation": {
-              "id": 14420,
+              "id": 14435,
               "nodeType": "StructuredDocumentation",
               "src": "1525:124:37",
               "text": " @dev Updates Poolify fee recipient.\n @param _poolifyFeeRecipient new Poolify fee recipient address."
             },
             "functionSelector": "86726a64",
-            "id": 14432,
+            "id": 14447,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 14425,
+                "id": 14440,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 14424,
+                  "id": 14439,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 428,
@@ -5226,17 +5226,17 @@
             "nameLocation": "1663:22:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14423,
+              "id": 14438,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14422,
+                  "id": 14437,
                   "mutability": "mutable",
                   "name": "_poolifyFeeRecipient",
                   "nameLocation": "1694:20:37",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14432,
+                  "scope": 14447,
                   "src": "1686:28:37",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5245,7 +5245,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14421,
+                    "id": 14436,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1686:7:37",
@@ -5261,12 +5261,12 @@
               "src": "1685:30:37"
             },
             "returnParameters": {
-              "id": 14426,
+              "id": 14441,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1735:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1654:140:37",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -5274,19 +5274,19 @@
           },
           {
             "body": {
-              "id": 14436,
+              "id": 14451,
               "nodeType": "Block",
               "src": "1970:2:37",
               "statements": []
             },
             "documentation": {
-              "id": 14433,
+              "id": 14448,
               "nodeType": "StructuredDocumentation",
               "src": "1800:123:37",
               "text": " @dev Function to synchronize balances before new user deposit.\n Can be overridden in the strategy."
             },
             "functionSelector": "573fef0a",
-            "id": 14437,
+            "id": 14452,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -5294,25 +5294,25 @@
             "nameLocation": "1937:13:37",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14434,
+              "id": 14449,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1950:2:37"
             },
             "returnParameters": {
-              "id": 14435,
+              "id": 14450,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1970:0:37"
             },
-            "scope": 14438,
+            "scope": 14453,
             "src": "1928:44:37",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "external"
           }
         ],
-        "scope": 14439,
+        "scope": 14454,
         "src": "167:1807:37",
         "usedErrors": []
       }
@@ -5325,7 +5325,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-03-08T21:42:34.481Z",
+  "updatedAt": "2022-03-09T22:41:29.313Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
