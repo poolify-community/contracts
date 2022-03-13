@@ -1,0 +1,9 @@
+{
+    "Multicall": "0x7BB2DEe8bF04F811525d00e2bF694dD1D29F0a62",
+    "CommunityFund": "0xb814b6aa0Bf31d4BCd8957e1fdc4404f375cfEA3",
+    "PoolifyLastHarvestMulticall": "0x952Cb2AB30CCebC11716974d994674Ca2D394F86",
+    "PoolifyPriceMulticall": "0xAD9a03422392811A134EA5563F6C27e8F6C08ffc",
+    "PoolifyRewardManager": "0x0cF8B032031e4D96b7b628aa9054379Ede9076e5",
+    "PoolifyStrategyMulticall": "0xFc30fa568328843B347de477f125F80515F2cC2e",
+    "PLFYToken": "0xCCa640c3AC0DaE0F66bDf25C3049992B82B7dE1c"
+}
