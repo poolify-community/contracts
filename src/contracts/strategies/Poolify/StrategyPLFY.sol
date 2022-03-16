@@ -38,8 +38,8 @@ contract StrategyPLFY is StratManagerPLFY, FeeManagerPLFY {
         address _rewardManager,
         address _vault,
         address _keeper,
-        address _poolifyFeeRecipient
-    ) StratManagerPLFY(_keeper, _vault, _poolifyFeeRecipient) {
+        address _strategistRecipient
+    ) StratManagerPLFY(_keeper, _vault, _strategistRecipient) {
         rewardManager = _rewardManager;
         want = _want;
         _giveAllowances();
@@ -54,7 +54,7 @@ contract StrategyPLFY is StratManagerPLFY, FeeManagerPLFY {
 
     function withdraw(uint256 _amount) external {
         require(msg.sender == vault, "!vault");
-
+        // Try with leaveStaking(0)
         uint256 wantBal = balanceOfWant();
 
         if (wantBal < _amount) {
@@ -97,6 +97,7 @@ contract StrategyPLFY is StratManagerPLFY, FeeManagerPLFY {
         PoolifyRewardManager(rewardManager).leaveStaking(0);
         if (pendingBal > 0) {
             chargeCallFees(callFeeRecipient,pendingBal);
+            chargeStrategistFees(pendingBal);
             deposit();
             lastHarvest = block.timestamp;
             emit StratHarvest(msg.sender, block.timestamp);
@@ -105,10 +106,14 @@ contract StrategyPLFY is StratManagerPLFY, FeeManagerPLFY {
 
     // Charge call fees
     function chargeCallFees(address callFeeRecipient, uint256 pendingBal) internal {
-
         uint256 _callFeeAmount = pendingBal.mul(CALL_FEE).div(CALL_PRECISION);
         IERC20(want).safeTransfer(callFeeRecipient, _callFeeAmount);
-        
+    }
+
+    // Charge Strategist fees
+    function chargeStrategistFees(uint256 pendingBal) internal {
+        uint256 _strategistFeeAmount = pendingBal.mul(STRATEGIST_FEE).div(CALL_PRECISION);
+        IERC20(want).safeTransfer(strategistRecipient, _strategistFeeAmount);
     }
 
     // calculate the total 'bounty' value rewarded to the user.

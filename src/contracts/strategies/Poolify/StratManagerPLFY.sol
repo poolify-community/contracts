@@ -12,22 +12,22 @@ contract StratManagerPLFY is Ownable, Pausable {
      */
     address public keeper;
     address public vault;
-    address public poolifyFeeRecipient;
+    address public strategistRecipient;
 
     /**
      * @dev Initializes the base strategy.
      * @param _keeper address to use as alternative owner.
      * @param _vault address of parent vault.
-     * @param _poolifyFeeRecipient address where to send Poolify's fees.
+     * @param _strategistRecipient address where to send Poolify's fees.
      */
     constructor(
         address _keeper,
         address _vault,
-        address _poolifyFeeRecipient
+        address _strategistRecipient
     ){
         keeper = _keeper;
         vault = _vault;
-        poolifyFeeRecipient = _poolifyFeeRecipient;
+        strategistRecipient = _strategistRecipient;
     }
 
     // checks that caller is either owner or keeper.
@@ -53,11 +53,11 @@ contract StratManagerPLFY is Ownable, Pausable {
     }
 
     /**
-     * @dev Updates Poolify fee recipient.
-     * @param _poolifyFeeRecipient new Poolify fee recipient address.
+     * @dev Updates strategist recipient.
+     * @param _strategistRecipient new strategist recipient address.
      */
-    function setpoolifyFeeRecipient(address _poolifyFeeRecipient) external onlyOwner {
-        poolifyFeeRecipient = _poolifyFeeRecipient;
+    function setStrategistRecipient(address _strategistRecipient) external onlyOwner {
+        strategistRecipient = _strategistRecipient;
     }
 
     /**

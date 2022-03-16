@@ -15,9 +15,13 @@ abstract contract FeeManagerPLFY is StratManagerPLFY {
      * {WITHDRAWAL_MAX} - Aux const used to safely calc the correct amounts.
      */
 
-    uint public CALL_FEE = 5;    // 0.05%
+    uint public CALL_FEE = 100;    // 1%
     uint constant public CALL_FEE_MAX   = 1000; //  10.00%
     uint constant public CALL_PRECISION = 10000;
+
+    uint public STRATEGIST_FEE = 100;    // 1%
+    uint constant public STRATEGIST_FEE_MAX   = 1000; //  10.00%
+    uint constant public STRATEGIST_PRECISION = 10000;
 
     uint public WITHDRAWAL_FEE = 0; // 0.05%
     uint constant public WITHDRAWAL_FEE_MAX   = 1000; //  10.00%
@@ -34,5 +38,11 @@ abstract contract FeeManagerPLFY is StratManagerPLFY {
         require(_fee <= WITHDRAWAL_FEE_MAX, "!cap");
 
         WITHDRAWAL_FEE = _fee;
+    }
+
+    function setStrategistFee(uint256 _fee) external onlyManager {
+        require(_fee <= STRATEGIST_FEE_MAX, "!cap");
+
+        STRATEGIST_FEE = _fee;
     }
 }

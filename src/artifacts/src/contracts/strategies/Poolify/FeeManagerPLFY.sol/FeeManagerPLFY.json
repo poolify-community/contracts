@@ -89,6 +89,45 @@
     },
     {
       "inputs": [],
+      "name": "STRATEGIST_FEE",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "STRATEGIST_FEE_MAX",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "STRATEGIST_PRECISION",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "WITHDRAWAL_FEE",
       "outputs": [
         {
@@ -174,19 +213,6 @@
     },
     {
       "inputs": [],
-      "name": "poolifyFeeRecipient",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
       "name": "renounceOwnership",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -221,6 +247,32 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setStrategistFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_strategistRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "setStrategistRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "address",
           "name": "_vault",
           "type": "address"
@@ -245,16 +297,16 @@
       "type": "function"
     },
     {
-      "inputs": [
+      "inputs": [],
+      "name": "strategistRecipient",
+      "outputs": [
         {
           "internalType": "address",
-          "name": "_poolifyFeeRecipient",
+          "name": "",
           "type": "address"
         }
       ],
-      "name": "setpoolifyFeeRecipient",
-      "outputs": [],
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     },
     {
