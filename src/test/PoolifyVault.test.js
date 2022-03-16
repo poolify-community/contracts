@@ -34,6 +34,7 @@ const resolveSwapRoute = (input, proxies, preferredProxy, output) => {
 
 const POOLFY_REWARD_PER_BLOCK = tokens('50');
 const POOLFY_CALL_FEE = 1000;
+const POOLFY_STRATEGIST_FEE = 1000;
 
 const formatter = (val) =>{
   return new BigNumber(val).dividedBy(ACC_PRECISION);
@@ -80,10 +81,11 @@ contract('StrategySimpleStaking', ([dev,alice,bob]) => {
           rewardManager: _poolifyRewardManager.address,
           vault: _vault.address,
           keeper: dev,
-          poolifyFeeRecipient: dev
+          strategistRecipient: dev
         };
         _strategy = await StrategyPLFY.new(...Object.values(strategyParams));
         await _strategy.setCallFee(POOLFY_CALL_FEE);
+        await _strategy.setStrategistFee(POOLFY_STRATEGIST_FEE);
         
         //console.log("---- Deployment ----");
         //console.log("Vault deployed to:", _vault.address);
@@ -214,8 +216,8 @@ contract('StrategySimpleStaking', ([dev,alice,bob]) => {
         await _strategy.harvest(dev);
         
         expect(formatter(await _poolifyRewardManager.pendingPoolify(0,_strategy.address)).toString()).to.be.eq('0');
-        assert.equal(formatter(await _strategy.balanceOf()).toString(),'195'); // 100 + 50 + 50 - 5
-        assert.equal(formatter(await _vault.balance()).toString(),'195');
+        assert.equal(formatter(await _strategy.balanceOf()).toString(),'190'); // 100 + 50 + 50 - 5 - 5
+        assert.equal(formatter(await _vault.balance()).toString(),'190');
         assert.equal(formatter(await _vault.available()).toString(),'0');
 
         // 5 Alice withdraw from the vault
@@ -224,8 +226,7 @@ contract('StrategySimpleStaking', ([dev,alice,bob]) => {
         
         // Check Bucket & PLFY balance of alice
         assert.equal(formatter(await _vault.balanceOf(alice)).toString(),'0');
-        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'195');
-
+        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'190');
       });
 
 
