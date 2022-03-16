@@ -142,25 +142,25 @@ contract PoolifyVault is ERC20, Ownable, ReentrancyGuard {
 
     /**
      * @dev Function to exit the system. The vault will withdraw the required tokens
-     * from the strategy and pay up the token holder. A proportional number of IOU
+     * from the strategy and pay up the token holder. A proportional number of ICE
      * tokens are burned in the process.
      */
     function withdraw(uint256 _shares) public {
-        uint256 r = (balance().mul(_shares)).div(totalSupply());
+        uint256 currentAmount = (balance().mul(_shares)).div(totalSupply());
         _burn(msg.sender, _shares);
 
-        uint b = want().balanceOf(address(this));
-        if (b < r) {
-            uint _withdraw = r.sub(b);
+        uint bal = want().balanceOf(address(this));
+        if (bal < currentAmount) {
+            uint _withdraw = currentAmount.sub(bal);
             strategy.withdraw(_withdraw);
             uint _after = want().balanceOf(address(this));
-            uint _diff = _after.sub(b);
+            uint _diff = _after.sub(bal);
             if (_diff < _withdraw) {
-                r = b.add(_diff);
+                currentAmount = bal.add(_diff);
             }
         }
 
-        want().safeTransfer(msg.sender, r);
+        want().safeTransfer(msg.sender, currentAmount);
     }
 
     /** 

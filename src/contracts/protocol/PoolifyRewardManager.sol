@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "../tokens/PLFYToken.sol";
+import "../tokens/IcePLFY.sol";
 
 /*
     Similar to pancake swap contract : masterChef.
@@ -36,6 +37,9 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
     /// @notice The Poolify ERC-20 contract.
     PLFYToken public immutable PLFY;
 
+    // The SYRUP TOKEN!
+    IcePLFY public immutable icePLFY;
+
     // Dev address.
     address public devaddr;
 
@@ -61,7 +65,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
     mapping (uint256 => mapping (address => UserInfo)) public userInfo;
 
     /// @dev Total allocation points. Must be the sum of all allocation points in all pools.
-    uint256 totalAllocPoint = 0;
+    uint256 public totalAllocPoint = 0;
 
     uint256 private constant ACC_PLFY_PRECISION = 1e18;
 
@@ -77,8 +81,9 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
 
     /// @param _plfy the POOLIFY Token
     /// @param _poolifyPerBlock number of PLFY per block
-    constructor(PLFYToken _plfy, uint256 _poolifyPerBlock,uint256 _startBlock,address _devaddr) {
+    constructor(PLFYToken _plfy,IcePLFY _icePLFY,uint256 _poolifyPerBlock,uint256 _startBlock,address _devaddr) {
         PLFY = _plfy;
+        icePLFY = _icePLFY;
         poolifyPerBlock = _poolifyPerBlock;
         startBlock = _startBlock;
         devaddr = _devaddr;
@@ -171,11 +176,11 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
     /// @param _pid The index of the pool. See `poolInfo`.
     /// @param _user address of user
     function pendingPoolify(uint256 _pid, address _user) external view returns (uint256) {
-        PoolInfo memory pool = poolInfo[_pid];
+        PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][_user];
 
         uint256 accPoolifyPerShare = pool.accPoolifyPerShare;
-        uint256 lpSupply           = pool.lpSupply; //pool.lpToken.balanceOf(address(this));
+        uint256 lpSupply           = pool.lpToken.balanceOf(address(this));
         if (block.number > pool.lastRewardBlock && lpSupply != 0) {
             uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
             uint256 poolifyReward = multiplier.mul(poolifyPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
@@ -199,7 +204,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
             return;
         }
 
-        uint256 lpSupply = pool.lpSupply; //pool.lpToken.balanceOf(address(this));
+        uint256 lpSupply = pool.lpToken.balanceOf(address(this));
         if (lpSupply == 0) {
             pool.lastRewardBlock = block.number;
             return;
@@ -212,7 +217,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
                     .div(totalAllocPoint);
 
         //PLFY.mint(devaddr, poolifyReward.div(10)); // 10% of the rewards to the DEV wallet
-        PLFY.mint(address(this), poolifyReward);  
+        PLFY.mint(address(icePLFY), poolifyReward);  
         
         pool.accPoolifyPerShare = pool.accPoolifyPerShare.add(poolifyReward.mul(ACC_PLFY_PRECISION).div(lpSupply));
         pool.lastRewardBlock = block.number;
@@ -220,10 +225,12 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
     }
 
 
-    /// @notice Deposit LP tokens to Poolify Factory for PLFY allocation.
+    /// @notice Deposit LP tokens to Poolify Reward manager for PLFY allocation.
     /// @param _pid The index of the pool. See `poolInfo`.
     /// @param _amount to deposit.
     function deposit(uint256 _pid, uint256 _amount) external nonReentrant {
+        require (_pid != 0, 'deposit PLFY by staking');
+        
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
 
@@ -237,7 +244,6 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         }
         if (_amount > 0) {
             pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
-            pool.lpSupply = pool.lpSupply.add(_amount);
             user.amount = user.amount.add(_amount);
         }
         user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
@@ -248,6 +254,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
     /// @param _pid The index of the pool. See `poolInfo`.
     /// @param _amount of lp tokens to withdraw.
     function withdraw(uint256 _pid, uint256 _amount) external nonReentrant {
+        require (_pid != 0, 'withdraw PLFY by unstaking');
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(user.amount >= _amount, "withdraw: not good");
@@ -259,11 +266,51 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         }
         if(_amount > 0) {
             user.amount = user.amount.sub(_amount);
-            pool.lpSupply = pool.lpSupply.sub(_amount);
             pool.lpToken.safeTransfer(address(msg.sender), _amount);
         }
         user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
         emit Withdraw(msg.sender, _pid, _amount);
+    }
+
+    // Stake PLFY tokens to Reward Manager
+    function enterStaking(uint256 _amount) public {
+        PoolInfo storage pool = poolInfo[0];
+        UserInfo storage user = userInfo[0][msg.sender];
+        updatePool(0);
+        if (user.amount > 0) {
+            uint256 pending = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION).sub(user.rewardDebt);
+            if(pending > 0) {
+                safePoolifyTransfer(msg.sender, pending);
+            }
+        }
+        if(_amount > 0) {
+            pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount); // Transfert PLFY to the contract
+            user.amount = user.amount.add(_amount);
+        }
+        user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
+
+        icePLFY.mint(msg.sender, _amount);
+        emit Deposit(msg.sender, 0, _amount);
+    }
+
+    // Withdraw PLFY tokens from STAKING.
+    function leaveStaking(uint256 _amount) public {
+        PoolInfo storage pool = poolInfo[0];
+        UserInfo storage user = userInfo[0][msg.sender];
+        require(user.amount >= _amount, "withdraw: not good");
+        updatePool(0);
+        uint256 pending = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION).sub(user.rewardDebt);
+        if(pending > 0) {
+            safePoolifyTransfer(msg.sender, pending);
+        }
+        if(_amount > 0) {
+            user.amount = user.amount.sub(_amount);
+            pool.lpToken.safeTransfer(address(msg.sender), _amount); // Withdraw PLFY from the contract
+        }
+        user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
+
+        icePLFY.burn(msg.sender, _amount);
+        emit Withdraw(msg.sender, 0, _amount);
     }
 
 
@@ -282,7 +329,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
 
     /// @notice Safe Poolify transfer function, just in case if rounding error causes pool to not have enough PLFYs.
     function safePoolifyTransfer(address _to, uint256 _amount) internal {
-        IERC20(PLFY).safeTransfer(_to, _amount);
+        icePLFY.safePLFYTransfer(_to,_amount);
     }
 
     // Return reward multiplier over the given _from to _to block.

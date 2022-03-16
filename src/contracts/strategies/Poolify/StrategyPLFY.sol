@@ -24,6 +24,10 @@ contract StrategyPLFY is StratManagerPLFY, FeeManagerPLFY {
     address public rewardManager;
 
 
+    bool public harvestOnDeposit;
+    uint256 public lastHarvest;
+
+
     /**
      * @dev Event that is fired each time someone harvests the strat.
      */
@@ -42,61 +46,81 @@ contract StrategyPLFY is StratManagerPLFY, FeeManagerPLFY {
     }
 
     function deposit() public whenNotPaused {
-        uint256 wantBal = IERC20(want).balanceOf(address(this));
-        PoolifyRewardManager(rewardManager).deposit(0,wantBal);
+        uint256 wantBal = balanceOfWant();
+        if(wantBal > 0){
+            PoolifyRewardManager(rewardManager).enterStaking(wantBal);
+        }
     }
 
     function withdraw(uint256 _amount) external {
         require(msg.sender == vault, "!vault");
 
-        uint256 wantBal = IERC20(want).balanceOf(address(this));
+        uint256 wantBal = balanceOfWant();
 
         if (wantBal < _amount) {
-            PoolifyRewardManager(rewardManager).withdraw(0,_amount.sub(wantBal));
-            wantBal = IERC20(want).balanceOf(address(this));
+            PoolifyRewardManager(rewardManager).leaveStaking(_amount.sub(wantBal));
+            wantBal = balanceOfWant();
         }
 
         if (wantBal > _amount) {
             wantBal = _amount;
         }
-
-        if (tx.origin == owner() || paused()) {
-            IERC20(want).safeTransfer(vault, wantBal);
-        } else {
-            uint256 withdrawalFeeAmount = wantBal.mul(withdrawalFee).div(WITHDRAWAL_MAX);
-            IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount));
-        }
+        
+        IERC20(want).safeTransfer(vault, wantBal);
     }
 
     // We harvest every time we do a deposit
     function beforeDeposit() external override {
-        harvest();
+        require(msg.sender == vault, "!vault");
+        _harvest(tx.origin);
+    }
+
+    function harvest() external {
+        _harvest(tx.origin);
+    }
+
+    function harvest(address callFeeRecipient) external {
+        _harvest(callFeeRecipient);
+    }
+
+
+    function managerHarvest() external onlyManager {
+        _harvest(tx.origin);
     }
 
     // compounds earnings and charges performance fee
-    function harvest() public whenNotPaused {
+    function _harvest(address callFeeRecipient) internal whenNotPaused {
         require(tx.origin == msg.sender || msg.sender == vault, "!contract");
 
-        uint256 wantBal = PoolifyRewardManager(rewardManager).pendingPoolify(0,address(this));
-    
-        if (wantBal > 0) {
-            //chargeFees();
+        uint256 pendingBal = balanceOfPendingRewards();
+        // Withdraw pendingBal
+        PoolifyRewardManager(rewardManager).leaveStaking(0);
+        if (pendingBal > 0) {
+            chargeCallFees(callFeeRecipient,pendingBal);
             deposit();
+            lastHarvest = block.timestamp;
             emit StratHarvest(msg.sender, block.timestamp);
         }
     }
 
-    // performance fees
-    function chargeFees() internal {
+    // Charge call fees
+    function chargeCallFees(address callFeeRecipient, uint256 pendingBal) internal {
 
-        uint256 balance = IERC20(want).balanceOf(address(this));
-
-        uint256 _callFeeAmount = balance.mul(callFee).div(MAX_FEE);
-        IERC20(want).safeTransfer(tx.origin, _callFeeAmount);
-
-        uint256 _plfyFeeAmount = balance.mul(plfyFee).div(MAX_FEE);
-        IERC20(want).safeTransfer(poolifyFeeRecipient, _plfyFeeAmount);
+        uint256 _callFeeAmount = pendingBal.mul(CALL_FEE).div(CALL_PRECISION);
+        IERC20(want).safeTransfer(callFeeRecipient, _callFeeAmount);
         
+    }
+
+    // calculate the total 'bounty' value rewarded to the user.
+    function balanceOfBounty() public view returns (uint256) {
+        uint256 balance = balanceOfPendingRewards();
+        uint256 _callFeeAmount = balance.mul(CALL_FEE).div(CALL_PRECISION);
+        return _callFeeAmount;
+    }
+
+    // calculate the total 'pending rewards'.
+    function balanceOfPendingRewards() public view returns (uint256){
+        return PoolifyRewardManager(rewardManager).pendingPoolify(0,address(this));
     }
 
     // calculate the total underlaying 'want' held by the strat.
@@ -114,6 +138,7 @@ contract StrategyPLFY is StratManagerPLFY, FeeManagerPLFY {
         (uint256 _amount,) = PoolifyRewardManager(rewardManager).userInfo(0, address(this));
         return _amount;
     }
+
 
     // called as part of strat migration. Sends all the available funds back to the vault.
     function retireStrat() external {

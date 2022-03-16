@@ -9,6 +9,7 @@
     "@openzeppelin/contracts-upgradeable": "^4.4.2",
     "chai-as-promised": "7.1.1",
     "chai-bignumber": "3.0.0",
+    "bignumber":"1.1.0",
     "minimist-lite":"2.2.0"
   },
   "scripts": {
