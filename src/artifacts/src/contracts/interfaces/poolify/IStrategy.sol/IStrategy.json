@@ -99,6 +99,19 @@
     },
     {
       "inputs": [],
+      "name": "reward",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "unpause",
       "outputs": [],
       "stateMutability": "nonpayable",

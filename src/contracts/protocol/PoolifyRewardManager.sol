@@ -8,7 +8,6 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "../tokens/PLFYToken.sol";
-import "../tokens/IcePLFY.sol";
 
 /*
     Similar to pancake swap contract : masterChef.
@@ -36,9 +35,6 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
 
     /// @notice The Poolify ERC-20 contract.
     PLFYToken public immutable PLFY;
-
-    // The SYRUP TOKEN!
-    IcePLFY public immutable icePLFY;
 
     // Dev address.
     address public devaddr;
@@ -81,9 +77,8 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
 
     /// @param _plfy the POOLIFY Token
     /// @param _poolifyPerBlock number of PLFY per block
-    constructor(PLFYToken _plfy,IcePLFY _icePLFY,uint256 _poolifyPerBlock,uint256 _startBlock,address _devaddr) {
+    constructor(PLFYToken _plfy,uint256 _poolifyPerBlock,uint256 _startBlock,address _devaddr) {
         PLFY = _plfy;
-        icePLFY = _icePLFY;
         poolifyPerBlock = _poolifyPerBlock;
         startBlock = _startBlock;
         devaddr = _devaddr;
@@ -142,7 +137,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         }));
         stakeTokens.push(_stakeToken);
 
-        recalculateAllocation();
+        //recalculateAllocation();
     }
 
 
@@ -155,10 +150,11 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         uint256 prevAllocPoint = poolInfo[_pid].allocPoint;
         poolInfo[_pid].allocPoint = _allocPoint;
         if (prevAllocPoint != _allocPoint) {
-            recalculateAllocation();
+            //recalculateAllocation();
         }
     }
 
+    /*
      function recalculateAllocation() internal {
         uint256 length = poolInfo.length;
         uint256 points = 0;
@@ -171,6 +167,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
             poolInfo[0].allocPoint = points;
         }
     }
+    */
 
     /// @notice View function to see pending PLFY on frontend.
     /// @param _pid The index of the pool. See `poolInfo`.
@@ -180,7 +177,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         UserInfo storage user = userInfo[_pid][_user];
 
         uint256 accPoolifyPerShare = pool.accPoolifyPerShare;
-        uint256 lpSupply           = pool.lpToken.balanceOf(address(this));
+        uint256 lpSupply           = pool.lpSupply;//pool.lpToken.balanceOf(address(this));
         if (block.number > pool.lastRewardBlock && lpSupply != 0) {
             uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
             uint256 poolifyReward = multiplier.mul(poolifyPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
@@ -204,7 +201,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
             return;
         }
 
-        uint256 lpSupply = pool.lpToken.balanceOf(address(this));
+        uint256 lpSupply = pool.lpSupply;//pool.lpToken.balanceOf(address(this));
         if (lpSupply == 0) {
             pool.lastRewardBlock = block.number;
             return;
@@ -216,8 +213,8 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
                     .mul(pool.allocPoint)
                     .div(totalAllocPoint);
 
-        //PLFY.mint(devaddr, poolifyReward.div(10)); // 10% of the rewards to the DEV wallet
-        PLFY.mint(address(icePLFY), poolifyReward);  
+        PLFY.mint(devaddr, poolifyReward.div(10)); // 10% of the rewards to the DEV wallet
+        PLFY.mint(address(this), poolifyReward);  
         
         pool.accPoolifyPerShare = pool.accPoolifyPerShare.add(poolifyReward.mul(ACC_PLFY_PRECISION).div(lpSupply));
         pool.lastRewardBlock = block.number;
@@ -244,7 +241,8 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         }
         if (_amount > 0) {
             pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
-            user.amount = user.amount.add(_amount);
+            pool.lpSupply   = pool.lpSupply.add(_amount);
+            user.amount     = user.amount.add(_amount);
         }
         user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
         emit Deposit(msg.sender, _pid, _amount);
@@ -266,6 +264,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         }
         if(_amount > 0) {
             user.amount = user.amount.sub(_amount);
+            pool.lpSupply = pool.lpSupply.sub(_amount);
             pool.lpToken.safeTransfer(address(msg.sender), _amount);
         }
         user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
@@ -285,11 +284,10 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         }
         if(_amount > 0) {
             pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount); // Transfert PLFY to the contract
-            user.amount = user.amount.add(_amount);
+            pool.lpSupply   = pool.lpSupply.add(_amount);
+            user.amount     = user.amount.add(_amount);
         }
         user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
-
-        icePLFY.mint(msg.sender, _amount);
         emit Deposit(msg.sender, 0, _amount);
     }
 
@@ -304,12 +302,13 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
             safePoolifyTransfer(msg.sender, pending);
         }
         if(_amount > 0) {
-            user.amount = user.amount.sub(_amount);
+            user.amount     = user.amount.sub(_amount);
+            pool.lpSupply   = pool.lpSupply.sub(_amount);
+
             pool.lpToken.safeTransfer(address(msg.sender), _amount); // Withdraw PLFY from the contract
         }
         user.rewardDebt = user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION);
 
-        icePLFY.burn(msg.sender, _amount);
         emit Withdraw(msg.sender, 0, _amount);
     }
 
@@ -329,7 +328,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
 
     /// @notice Safe Poolify transfer function, just in case if rounding error causes pool to not have enough PLFYs.
     function safePoolifyTransfer(address _to, uint256 _amount) internal {
-        icePLFY.safePLFYTransfer(_to,_amount);
+        IERC20(PLFY).safeTransfer(_to, _amount);
     }
 
     // Return reward multiplier over the given _from to _to block.
