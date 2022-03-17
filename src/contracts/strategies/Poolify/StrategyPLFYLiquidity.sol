@@ -123,7 +123,6 @@ contract StrategyPLFYLiquidity is StratManagerPLFY, FeeManagerPLFY {
 
     // calculate the total underlaying 'want' held by the strat.
     function balanceOf() public view returns (uint256) {
-        console.log('balanceOfPool()',balanceOfPool());
         return balanceOfWant().add(balanceOfPool());
     }
 

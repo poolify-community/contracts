@@ -76,7 +76,7 @@ contract PLFY_Vault is ERC20, Ownable, ReentrancyGuard {
      * @dev Balance of Rewards
      */
     function balance_reward() public view returns (uint) {
-        return reward().balanceOf(address(this)).add(IStrategy(strategy).balanceOf());
+        return reward().balanceOf(address(this)).add(reward().balanceOf(address(strategy)));
     }
 
 
