@@ -1,7 +1,7 @@
 /** Libraries */
 const web3 = require('web3');
 /** Contracts **/
-const PoolifyVault    = artifacts.require('vaults/PoolifyVault');
+const MAXI_Vault    = artifacts.require('vaults/MAXI_Vault');
 const StrategyPLFY    = artifacts.require('strategies/Poolify/StrategyPLFY');
 
 // core
@@ -69,7 +69,7 @@ module.exports = async function(deployer, network, accounts) {
 
 /**
  *  DEPLOY Poolify Maxi Vault
- **/
+**/
 
 const deployPoolifyMaxi = async function(deployer,{_poolifyToken,_poolifyRewardManager,admin}){
    // Deploy Vault
@@ -78,8 +78,8 @@ const deployPoolifyMaxi = async function(deployer,{_poolifyToken,_poolifyRewardM
       vaultSymbol: `bPLFY`,
       delay: 21600,
     }
-    await deployer.deploy(PoolifyVault,...Object.values(_poolifyVaultParams));
-    const _vault = await PoolifyVault.deployed();
+    await deployer.deploy(MAXI_Vault,...Object.values(_poolifyVaultParams));
+    const _vault = await MAXI_Vault.deployed();
 
     // Load Strategy
     const _poolifyStrategyParams = {

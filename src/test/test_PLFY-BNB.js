@@ -91,13 +91,13 @@ contract('PLFY-BNB : Liquidity Mining', ([dev,alice,bob]) => {
     }
   
 
-    context("Test vault", async () => {
+    context("> Test", async () => {
 
       before(async () => {
         await generatingData();
       })
 
-      it('Deposit & Withdraw', async () => {
+      it('Deposit & Withdraw from VAULT', async () => {
         // 1. Check the balance
         assert.equal(formatter(await _lpToken.balanceOf(alice)).toString(),'100');
         assert.equal(formatter(await _lpToken.balanceOf(bob)).toString(),'100');
