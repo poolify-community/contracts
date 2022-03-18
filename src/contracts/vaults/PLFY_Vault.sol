@@ -96,6 +96,11 @@ contract PLFY_Vault is ERC20, Ownable, ReentrancyGuard {
         return want().balanceOf(address(this)).add(IStrategy(strategy).balanceOf());
     }
 
+    // For Front End
+    function balance() public view returns (uint) {
+        return balance_want();
+    }
+
     /**
      * @dev Custom logic in here for how much the vault allows to be borrowed.
      * We return 100% of tokens for now. Under certain conditions we might
@@ -104,6 +109,11 @@ contract PLFY_Vault is ERC20, Ownable, ReentrancyGuard {
      */
     function available_want() public view returns (uint256) {
         return want().balanceOf(address(this));
+    }
+
+    // For Front End
+    function available() public view returns (uint256) {
+        return available_want();
     }
 
     /**
