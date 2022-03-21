@@ -1,8 +1,14 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const walletKeys = require('./wallet.config.json'); // simple mapping : {'bsc':'xxxxxxx','bscTest':'xxxxxx'}
-
+const apiConfigKeys = require('./api.config.json');
 
 module.exports = {
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    bscscan: apiConfigKeys.bscscan
+  },
   networks: {
     bsc: {
       provider: () => new HDWalletProvider(

@@ -136,8 +136,8 @@ contract('POOLIFY MAXI vault', ([dev,alice,bob]) => {
         await _strategy.harvest(dev);
         
         expect(formatter(await _poolifyRewardManager.pendingPoolify(0,_strategy.address)).toString()).to.be.eq('0');
-        assert.equal(formatter(await _strategy.balanceOf()).toString(),'190'); // 100 + 50 + 50 - 5 - 5
-        assert.equal(formatter(await _vault.balance()).toString(),'190');
+        assert.equal(formatter(await _strategy.balanceOf()).toString(),'180'); // 100 + 50 + 50 - 10 - 10
+        assert.equal(formatter(await _vault.balance()).toString(),'180');
         assert.equal(formatter(await _vault.available()).toString(),'0');
 
         // 5 Alice withdraw from the vault
@@ -146,7 +146,7 @@ contract('POOLIFY MAXI vault', ([dev,alice,bob]) => {
         
         // Check Bucket & PLFY balance of alice
         assert.equal(formatter(await _vault.balanceOf(alice)).toString(),'0');
-        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'190');
+        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'180');
       });
 
 

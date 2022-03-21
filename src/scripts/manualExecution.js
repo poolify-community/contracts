@@ -5,5 +5,5 @@ module.exports = async function(callback) {
   await _poolifyRewardManager.setPoolifyPerBlock(0);
   // Code goes here...
   console.log("Pool updated");
-  callback()
+  callback();
 }

@@ -130,14 +130,14 @@ contract('PLFY-BNB : Liquidity Mining', ([dev,alice,bob]) => {
         await _strategy.harvest(dev);
 
         /** Check LP Token balance to see if there was no changes !!!  */
-        assert.equal(formatter(await _strategy.balanceOf()).toString(),'100'); //  10 + 10 - 1 
+        assert.equal(formatter(await _strategy.balanceOf()).toString(),'100'); //  10 + 10 - 1 -1
         assert.equal(formatter(await _vault.balance_want()).toString(),'100');
-        assert.equal(formatter(await _vault.balance_reward()).toString(),'19');
+        assert.equal(formatter(await _vault.balance_reward()).toString(),'18');
         assert.equal(formatter(await _vault.available_want()).toString(),'0');
          /** Check Poolify rewards  */
         assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'0');
         assert.equal(formatter(await _poolifyToken.balanceOf(_strategy.address)).toString(),'0');
-        assert.equal(formatter(await _poolifyToken.balanceOf(_vault.address)).toString(),'19');
+        assert.equal(formatter(await _poolifyToken.balanceOf(_vault.address)).toString(),'18');
 
         // 5 Alice withdraw from the vault
         await _vault.withdrawAll({ from: alice });
@@ -147,7 +147,7 @@ contract('PLFY-BNB : Liquidity Mining', ([dev,alice,bob]) => {
         assert.equal(formatter(await _vault.balanceOf(alice)).toString(),'0');
         // Alice is receiving PLFY and the LPTokens back
         assert.equal(formatter(await _lpToken.balanceOf(alice)).toString(),'100');
-        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'19');
+        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'18');
       });
 
 

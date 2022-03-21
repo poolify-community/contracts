@@ -181,9 +181,11 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
         if (block.number > pool.lastRewardBlock && lpSupply != 0) {
             uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
             uint256 poolifyReward = multiplier.mul(poolifyPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
-            accPoolifyPerShare = accPoolifyPerShare.add(poolifyReward.mul(ACC_PLFY_PRECISION).div(lpSupply));
+            accPoolifyPerShare = accPoolifyPerShare.add(
+                poolifyReward.mul(ACC_PLFY_PRECISION).div(lpSupply)
+            );
         }
-        return user.amount.mul(pool.accPoolifyPerShare).div(ACC_PLFY_PRECISION).sub(user.rewardDebt);
+        return user.amount.mul(accPoolifyPerShare).div(ACC_PLFY_PRECISION).sub(user.rewardDebt);
     }
 
     // Update reward variables for all pools. Be careful of gas spending!

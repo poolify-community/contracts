@@ -4,32 +4,33 @@
   "description": "Solidity part of the poolify APP",
   "author": "gui@poolify.finance",
   "dependencies": {
-    "@openzeppelin/test-helpers":"0.5.15",
     "@openzeppelin/contracts": "^4.4.2",
     "@openzeppelin/contracts-upgradeable": "^4.4.2",
+    "@openzeppelin/test-helpers": "0.5.15",
+    "bignumber": "1.1.0",
     "chai-as-promised": "7.1.1",
     "chai-bignumber": "3.0.0",
-    "bignumber":"1.1.0",
-    "minimist-lite":"2.2.0"
+    "minimist-lite": "2.2.0"
   },
   "scripts": {
-    "init_wallet":"node src/scripts/initialSetup.js",
+    "init_wallet": "node src/scripts/initialSetup.js",
     "local_deploy": "node src/scripts/deployContract.js --network=develop",
     "bsc_deploy": "node src/scripts/deployContract.js --network=bsc",
     "bscTest_deploy": "node src/scripts/deployContract.js --network=bscTest",
     "test": "node src/scripts/runTest.js"
   },
   "devDependencies": {
-    "@truffle/hdwallet-provider":"2.0.3",
-    "@openzeppelin/test-helpers":"0.5.15",
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-truffle5": "^2.0.3",
     "@nomiclabs/hardhat-waffle": "^2.0.2",
     "@nomiclabs/hardhat-web3": "^2.0.0",
+    "@openzeppelin/test-helpers": "0.5.15",
+    "@truffle/hdwallet-provider": "2.0.3",
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.4",
+    "hardhat": "2.8.3",
     "truffle": "5.4.32",
-    "hardhat":"2.8.3"
+    "truffle-plugin-verify": "^0.5.24"
   }
 }

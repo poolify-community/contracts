@@ -134,9 +134,16 @@ contract('PLFY : Reward Manager', ([dev,alice,bob]) => {
         expect(formatter(await _poolifyRewardManager.pendingPoolify(0,alice)).toString()).to.be.eq('50');
 
         // 11. Alice should have 350 PLFYs when she widthdraw
-        await _poolifyRewardManager.leaveStaking(tokens('250'),{from:alice});
+        await _poolifyRewardManager.leaveStaking(tokens('100'),{from:alice});
         
-        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'350');
+        assert.equal(formatter(await _poolifyToken.balanceOf(alice)).toString(),'200');
+
+        // 12. Deposit PLFY to the PLFY Reward Manager
+        await _poolifyToken.approve(_poolifyRewardManager.address, tokens('200'),{ from: alice });
+        await _poolifyRewardManager.enterStaking(tokens('200'),{ from: alice });
+
+        // 13. Trigger random update pool to make 1 more block mine
+        await _poolifyRewardManager.massUpdatePools();
 
       });
 

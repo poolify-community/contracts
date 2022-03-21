@@ -1,21 +1,72 @@
 /** Libraries */
 const web3 = require('web3');
 /** Contracts **/
-
+const MAXI_Vault    = artifacts.require('vaults/MAXI_Vault');
+const StrategyPLFY    = artifacts.require('strategies/Poolify/StrategyPLFY');
 
 // core
+const PLFYToken         = artifacts.require("tokens/PLFYToken.sol");
 const Multicall         = artifacts.require("protocol/Multicall.sol");
+const CommunityFund     = artifacts.require("protocol/CommunityFund.sol");
+const PoolifyPriceMulticall    = artifacts.require("protocol/PoolifyPriceMulticall.sol");
+const PoolifyRewardManager     = artifacts.require("protocol/PoolifyRewardManager.sol");
+const PoolifyStrategyMulticall = artifacts.require("protocol/PoolifyStrategyMulticall.sol");
+const PoolifyLastHarvestMulticall     = artifacts.require("protocol/PoolifyLastHarvestMulticall.sol");
 
+function tokens(n) {
+  return web3.utils.toWei(n, 'ether');
+}
 
 
 module.exports = async function(deployer, network, accounts) {
   const [admin,_] = accounts;
   let networkId = deployer.networks[network].network_id;
 
-  // Deploy All multicalls
-  await deployer.deploy(Multicall);
-  const _Multicall = await Multicall.deployed();
+  const _poolifyToken = await PLFYToken.deployed();
 
- 
+  console.log('_poolifyToken.address',_poolifyToken.address);
+  const _poolifyRewardManager = await PoolifyRewardManager.deployed();
+
+  
+  // Deploy Initial Liquidity Mining Program (BNB-PLFY)
+  
+  const {_vault,_strategy} = await deployPoolifyMaxi(deployer,{_poolifyToken,_poolifyRewardManager,admin});
+
+
+  // Provide PLFY to Admin account for testing
+  
+  await _poolifyToken.mint(admin,tokens('10000'));
 }
 
+/**
+ *  DEPLOY Poolify Maxi Vault
+**/
+
+const deployPoolifyMaxi = async function(deployer,{_poolifyToken,_poolifyRewardManager,admin}){
+   // Deploy Vault
+    const _poolifyVaultParams = {
+      vaultName: `Bucket PLFY`,
+      vaultSymbol: `bPLFY`,
+      delay: 21600,
+    }
+    await deployer.deploy(MAXI_Vault,...Object.values(_poolifyVaultParams));
+    const _vault = await MAXI_Vault.deployed();
+
+    // Load Strategy
+    const _poolifyStrategyParams = {
+      want: _poolifyToken.address,
+      rewardManager: _poolifyRewardManager.address,
+      vault: _vault.address,
+      keeper: admin,
+      poolifyFeeRecipient: admin
+    };
+    await deployer.deploy(StrategyPLFY,...Object.values(_poolifyStrategyParams));
+    const _strategy = await StrategyPLFY.deployed();
+    
+
+    // Init default Strategy
+    await _vault.setDefaultStrategy(_strategy.address);
+
+    return {_vault,_strategy};
+
+}
