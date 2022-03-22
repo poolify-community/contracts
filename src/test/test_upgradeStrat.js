@@ -125,7 +125,7 @@ contract('POOLIFY Test Upgrade Vault', ([dev,alice,bob]) => {
         // 4 Upgrade Strate
 
         await _vault.proposeStrat(_strategy2.address);
-        await _vault.upgradeStrat();
+        //await _vault.upgradeStrat();
 
       });
 

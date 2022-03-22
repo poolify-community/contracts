@@ -63,7 +63,7 @@ contract PoolifyRewardManager is Ownable, ReentrancyGuard {
     /// @dev Total allocation points. Must be the sum of all allocation points in all pools.
     uint256 public totalAllocPoint = 0;
 
-    uint256 private constant ACC_PLFY_PRECISION = 1e18;
+    uint256 private constant ACC_PLFY_PRECISION = 1e12;
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
     event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);

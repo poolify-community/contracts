@@ -3,6 +3,8 @@ const web3 = require('web3');
 /** Contracts **/
 const MAXI_Vault    = artifacts.require('vaults/MAXI_Vault');
 const StrategyPLFY    = artifacts.require('strategies/Poolify/StrategyPLFY');
+const PLFY_Vault    = artifacts.require('vaults/PLFY_Vault');
+const StrategyPLFYLiquidity    = artifacts.require('strategies/Poolify/StrategyPLFYLiquidity');
 
 // core
 const PLFYToken         = artifacts.require("tokens/PLFYToken.sol");
@@ -59,7 +61,9 @@ module.exports = async function(deployer, network, accounts) {
   
   // Deploy Initial Liquidity Mining Program (BNB-PLFY)
   
-  const {_vault,_strategy} = await deployPoolifyMaxi(deployer,{_poolifyToken,_poolifyRewardManager,admin});
+  const poolifyMaxi = await deployPoolifyMaxi(deployer,{_poolifyToken,_poolifyRewardManager,admin});
+
+  const poolifyLiquidity = await deployPoolifyLiquidity(deployer,{_poolifyToken,_poolifyRewardManager,admin});
 
 
   // Provide PLFY to Admin account for testing
@@ -75,7 +79,7 @@ const deployPoolifyMaxi = async function(deployer,{_poolifyToken,_poolifyRewardM
    // Deploy Vault
     const _poolifyVaultParams = {
       vaultName: `Bucket PLFY`,
-      vaultSymbol: `bPLFY`,
+      vaultSymbol: `bucketPLFYMaxi`,
       delay: 21600,
     }
     await deployer.deploy(MAXI_Vault,...Object.values(_poolifyVaultParams));
@@ -97,5 +101,34 @@ const deployPoolifyMaxi = async function(deployer,{_poolifyToken,_poolifyRewardM
     await _vault.setDefaultStrategy(_strategy.address);
 
     return {_vault,_strategy};
+
+}
+
+const deployPoolifyLiquidity = async function(deployer,{_poolifyToken,_poolifyRewardManager,admin}){
+  // Deploy Vault
+  const _poolifyVaultParams = {
+    vaultName: `Bucket PLFY-BNB`,
+    vaultSymbol: `bucketPLFY-BNB`,
+    delay: 21600,
+  }
+   await deployer.deploy(PLFY_Vault,...Object.values(_poolifyVaultParams));
+   const _vault = await PLFY_Vault.deployed();
+
+   // Load Strategy
+   const _poolifyStrategyParams = {
+     want: _poolifyToken.address,
+     masterChef: _poolifyRewardManager.address,
+     vault: _vault.address,
+     keeper: admin,
+     poolifyFeeRecipient: admin
+   };
+   await deployer.deploy(StrategyPLFYLiquidity,...Object.values(_poolifyStrategyParams));
+   const _strategy = await StrategyPLFYLiquidity.deployed();
+   
+
+   // Init default Strategy
+   await _vault.setDefaultStrategy(_strategy.address);
+
+   return {_vault,_strategy};
 
 }

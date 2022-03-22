@@ -145,6 +145,11 @@ contract('PLFY : Reward Manager', ([dev,alice,bob]) => {
         // 13. Trigger random update pool to make 1 more block mine
         await _poolifyRewardManager.massUpdatePools();
 
+        // 14. Check pendingPoolify for Alice
+        expect(formatter(await _poolifyRewardManager.pendingPoolify(0,alice)).toString()).to.be.eq('50');
+
+
+
       });
 
     })

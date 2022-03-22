@@ -27,26 +27,12 @@ module.exports = async function(deployer, network, accounts) {
   // Deploy All multicalls
 
   const _poolifyToken = await PLFYToken.deployed();
-  // Deploy Poolify Reward Manager
-  _poolifyRewardManagerParams = {
-    tokenAddress:_poolifyToken.address,
-    rewardPerBlock:tokens('0.5'),
-    startingBlock:0,
-    devAddress:admin
-  }
-  
-  await deployer.deploy(PoolifyRewardManager,...Object.values(_poolifyRewardManagerParams));
   const _poolifyRewardManager = await PoolifyRewardManager.deployed();
-
-  await _poolifyRewardManager.addPool(1000,LPToken_Address,false);
-
-  // Grant Roles to PLFY Token (MINTER)
-  await _poolifyToken.grantRole(await _poolifyToken.MINTER_ROLE.call(),_poolifyRewardManager.address);
 
 
   const _poolifyVaultParams = {
-    vaultName: `Bucket PLFY-BNB`,
-    vaultSymbol: `bucketCakeV2PLFY-BNB`,
+    vaultName: `Bucket PLFY-BNB-2`,
+    vaultSymbol: `bucketCakeV2PLFY-BNB-2`,
     delay: 21600,
   }
   await deployer.deploy(PLFY_Vault,...Object.values(_poolifyVaultParams));
