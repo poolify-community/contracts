@@ -100,8 +100,8 @@ contract StrategyPLFYLiquidity is StratManagerPLFY, FeeManagerPLFY {
         require(tx.origin == msg.sender || msg.sender == vault, "!contract");
         
         uint256 pendingBal = balanceOfPendingRewards();
-        // Withdraw pendingBal
-        PoolifyRewardManager(rewardManager).withdraw(poolRewardId,pendingBal);
+        // Withdraw pendingRewardBal
+        PoolifyRewardManager(rewardManager).withdraw(poolRewardId,0);
         if (pendingBal > 0) {
             chargeStrategistFees(pendingBal);
             lastHarvest = block.timestamp;

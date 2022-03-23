@@ -34796,7 +34796,7 @@
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-03-22T12:53:41.824Z",
+  "updatedAt": "2022-03-23T17:54:08.050Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Implementation of a vault to deposit funds for yield optimizing. This is the contract that receives funds and that users interface with. The yield optimizing strategy itself is implemented in a separate 'Strategy.sol' contract.",

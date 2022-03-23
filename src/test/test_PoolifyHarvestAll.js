@@ -119,8 +119,8 @@ contract('POOLIFY MAXI & Liquidity vault', ([dev,alice,bob]) => {
         await _poolifyToken.mint(bob,tokens('100'));
           
         // Provide LP Token to Alice & Bob
-        await _lpToken.mint(alice,tokens('100'));
-        await _lpToken.mint(bob,tokens('100'));
+        await _lpToken.mint(alice,tokens('10'));
+        await _lpToken.mint(bob,tokens('10'));
     }
   
 
@@ -140,8 +140,8 @@ contract('POOLIFY MAXI & Liquidity vault', ([dev,alice,bob]) => {
         await _poolifyToken.approve(_vault.address, tokens('100'),{ from: alice });
         await _vault.deposit(tokens('100'),{ from: alice });
 
-        await _lpToken.approve(_vaultLiquidity.address, tokens('100'),{ from: bob });
-        await _vaultLiquidity.deposit(tokens('100'),{ from: bob });
+        await _lpToken.approve(_vaultLiquidity.address, tokens('10'),{ from: bob });
+        await _vaultLiquidity.deposit(tokens('10'),{ from: bob });
         
         // 3 Update the reward Pool (generate 1 block + 50 PLFY)    
         await _poolifyRewardManager.updatePool(0);
@@ -152,6 +152,7 @@ contract('POOLIFY MAXI & Liquidity vault', ([dev,alice,bob]) => {
         // 4 harvest All
         //let addresses = [_strategy.address,_strategyLiquidity.address];
         let addresses = [_vault.address,_vaultLiquidity.address];
+
         await _poolifyHarvestAll.harvestAll(addresses);
 
         expect(formatter(await _poolifyRewardManager.pendingPoolify(0,_strategy.address)).toString()).to.be.eq('0');

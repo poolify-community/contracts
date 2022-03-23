@@ -25,22 +25,8 @@ module.exports = async function(deployer, network, accounts) {
   // Deploy All multicalls
 
   const _poolifyToken = await PLFYToken.deployed();
-  const _vault        = await PLFY_Vault.deployed();
-  const _vaultMaxi    = await MAXI_Vault.deployed();
-
-  // --> REDEPLOYING POOLIFY MANAGER
-  await deployer.deploy(PoolifyRewardManager,...Object.values({
-    tokenAddress:_poolifyToken.address,
-    rewardPerBlock:tokens('0.5'),
-    startingBlock:0,
-    devAddress:admin
-  }));
+  const _PLFY_Vault        = await PLFY_Vault.deployed();
   const _poolifyRewardManager = await PoolifyRewardManager.deployed();
-
-  await _poolifyRewardManager.addPool(1000,LPToken_Address,false);
-
-  // Grant Roles to PLFY Token (MINTER)
-  await _poolifyToken.grantRole(await _poolifyToken.MINTER_ROLE.call(),_poolifyRewardManager.address);
 
 
   
@@ -51,30 +37,16 @@ module.exports = async function(deployer, network, accounts) {
     reward: _poolifyToken.address,
     rewardManager: _poolifyRewardManager.address,
     poolRewardId:1,
-    vault: _vault.address,
+    vault: _PLFY_Vault.address,
     keeper: admin,
     strategistRecipient: admin
   }));
 
-  await deployer.deploy(StrategyPLFY,...Object.values({
-    want: _poolifyToken.address,
-    rewardManager: _poolifyRewardManager.address, // 0xFC11C0C53BF631e979b3478B25DF2FaaCc61E04E
-    vault: _vaultMaxi.address,
-    keeper: admin,
-    poolifyFeeRecipient: admin
-  }));
-
   const _strategyPLFYLiquidity = await StrategyPLFYLiquidity.deployed();
-  const _strategyPLFYMaxi = await StrategyPLFY.deployed();
-
 
 
   // Init default Strategy
-  await _vault.proposeStrat(_strategyPLFYLiquidity.address); // 0xB4BC51a8D24a6C92EcEB4Fc678E52837069905FF
-  await _vault.upgradeStrat();
-  // Init default Strategy
-  await _vaultMaxi.proposeStrat(_strategyPLFYMaxi.address); // 0x5a6ED27aA7e3FeEB7208A8C59203Fb0bf9639390
-  await _vaultMaxi.upgradeStrat();
+  await _PLFY_Vault.proposeStrat(_strategyPLFYLiquidity.address); 
 
 
 }

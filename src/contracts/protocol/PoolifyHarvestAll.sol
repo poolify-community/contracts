@@ -12,6 +12,8 @@ contract PoolifyHarvestAll is ReentrancyGuard {
         IVault(addr).deposit(0);
     }
 
+    
+
     function harvestAll(address[] calldata vaults) public nonReentrant{
         for (uint i = 0; i < vaults.length; i++) {
             _harvest(vaults[i]);
