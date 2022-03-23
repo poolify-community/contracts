@@ -146,7 +146,6 @@ contract('PLFY : Reward Manager', ([dev,alice,bob]) => {
         await _poolifyRewardManager.massUpdatePools();
 
         // 14. Check pendingPoolify for Alice
-        expect(formatter(await _poolifyRewardManager.pendingPoolify(0,alice)).toString()).to.be.eq('50');
 
 
 
