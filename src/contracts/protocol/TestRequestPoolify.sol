@@ -23,7 +23,7 @@ contract TestRequestPoolify is Ownable, ReentrancyGuard {
     }
     uint256 public immutable ACC_PLFY_PRECISION = 1e18;
     uint256 public immutable requestDelay = 21600; // 6h
-    uint256 public immutable tokenSizeRequest = 10000;
+    uint256 public immutable tokenSizeRequest = 2000;
 
     address PLFYToken;
 
