@@ -16,8 +16,8 @@ contract PLFYToken is ERC20, ERC20Burnable, Pausable, AccessControl, ERC20Permit
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-    uint256 private constant CAP                = 1000000e18; //  1 000 000 tokens
-    uint256 private constant MANUAL_MINT_LIMIT  =  200000e18; //  200 000 tokens
+    uint256 private constant CAP                = 100000000e18; //  100 000 000 tokens
+    uint256 private constant MANUAL_MINT_LIMIT  =  60000000e18; //   60 000 000 tokens
     uint256 public manualMinted = 0;
 
     constructor() ERC20("PLFYToken", "PLFY") ERC20Permit("PLFYToken") {

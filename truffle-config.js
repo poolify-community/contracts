@@ -13,10 +13,13 @@ module.exports = {
     bsc: {
       provider: () => new HDWalletProvider(
         walletKeys['bsc'], 
-        'https://bsc-dataseed.binance.org/'
+        'https://bsc-dataseed2.binance.org'
       ),
       network_id: 56,
-      skipDryRun: true
+      skipDryRun: true,
+      gasPrice: 10 * 1e9,
+      timeoutBlocks: 1,
+      confirmations: 0,
     },
     bscTest: {
       provider: () => new HDWalletProvider(

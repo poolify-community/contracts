@@ -59,10 +59,10 @@ contract('BetaTest - PLFY Distribution', ([dev,alice,bob]) => {
         assert.equal(await _TestRequestPoolify.isRequestAvailable({from:bob}),true);
         await _TestRequestPoolify.request({from:bob});
         assert.equal(await _TestRequestPoolify.isRequestAvailable({from:bob}),false);
-        assert.equal(formatter(await _poolifyToken.balanceOf(bob)).toString(),'10100');
+        assert.equal(formatter(await _poolifyToken.balanceOf(bob)).toString(),'2100');
 
         await _TestRequestPoolify.request({from:bob});
-        assert.equal(formatter(await _poolifyToken.balanceOf(bob)).toString(),'10100');
+        assert.equal(formatter(await _poolifyToken.balanceOf(bob)).toString(),'2100');
         
       });
 
